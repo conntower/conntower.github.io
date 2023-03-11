@@ -4,29 +4,39 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "version.json": "980547175e325fe622a3362b84d55b6a",
-"index.html": "c3e0b48b9a67d15ed04be5d1e240c012",
-"/": "c3e0b48b9a67d15ed04be5d1e240c012",
-"main.dart.js": "7fe55b01053c2622c2ffb892aa5b29a6",
-"flutter.js": "a85fcf6324d3c4d3ae3be1ae4931e9c5",
+"index.html": "1f1e9cdc84f03cfc8d909b7284dc477a",
+"/": "1f1e9cdc84f03cfc8d909b7284dc477a",
+"main.dart.js": "d4e6e132dfb54b098b6dd042a1a5bf69",
+"flutter.js": "f85e6fb278b0fd20c349186fb46ae36d",
 "favicon.png": "455ee3b51b64bff05b5f86db108957e2",
 "icons/Icon-192.png": "6019a1a91dd93ff78692f5ba2bece373",
 "icons/Icon-maskable-192.png": "6019a1a91dd93ff78692f5ba2bece373",
 "icons/Icon-maskable-512.png": "c328430c879431d6165b441ac0cc5671",
 "icons/Icon-512.png": "c328430c879431d6165b441ac0cc5671",
 "manifest.json": "90c454c29b48f08bc06627d125f70466",
-"assets/AssetManifest.json": "79b5f4109719371665c144150ea65666",
-"assets/NOTICES": "a4487bb99b558c036f8540eb30f8118b",
+"assets/AssetManifest.json": "2e19582efb822d99bc551b5ce93c7a4e",
+"assets/NOTICES": "739d4ba745e3f0e315334b78787cb68c",
 "assets/FontManifest.json": "5a32d4310a6f5d9a6b651e75ba0d7372",
-"assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "57d849d738900cfd590e9adc7e208250",
-"assets/packages/font_awesome_flutter/lib/fonts/fa-solid-900.ttf": "99d45f98c5ac98517eb5cba57d3fabc0",
-"assets/packages/font_awesome_flutter/lib/fonts/fa-regular-400.ttf": "01bb14ae3f14c73ee03eed84f480ded9",
-"assets/packages/font_awesome_flutter/lib/fonts/fa-brands-400.ttf": "0694916c8bb69ac850e24da716a6eb48",
-"assets/shaders/ink_sparkle.frag": "57f2f020e63be0dd85efafc7b7b25d80",
+"assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "6d342eb68f170c97609e9da345464e5e",
+"assets/packages/font_awesome_flutter/lib/fonts/fa-solid-900.ttf": "9cda082bd7cc5642096b56fa8db15b45",
+"assets/packages/font_awesome_flutter/lib/fonts/fa-regular-400.ttf": "0a94bab8e306520dc6ae14c2573972ad",
+"assets/packages/font_awesome_flutter/lib/fonts/fa-brands-400.ttf": "b00363533ebe0bfdb95f3694d7647f6d",
+"assets/shaders/ink_sparkle.frag": "bf93b6099597a22043d417727b1b320b",
 "assets/AssetManifest.bin": "4c1a0e12e1b908ad30cccd7e6c592c6a",
-"assets/fonts/MaterialIcons-Regular.otf": "62ec8220af1fb03e1c20cfa38781e17e",
+"assets/fonts/MaterialIcons-Regular.otf": "95db9098c58fd6db106f1116bae85a0b",
 "assets/assets/images/logo.png": "c328430c879431d6165b441ac0cc5671",
-"canvaskit/canvaskit.js": "1338eccfe817956d34753284f2b1cdf6",
-"canvaskit/canvaskit.wasm": "78daff025a185d11c6a08349e295f9eb"
+"assets/assets/icons/zh_HK/Download_on_the_App_Store.svg": "97118bcf86319ccdcf4fca0879889e64",
+"assets/assets/icons/ja/Download_on_the_App_Store.svg": "57272347647449ab686d88248fc9dc9e",
+"assets/assets/icons/zh_CN/Download_on_the_App_Store.svg": "4641acc302b3ddc1937be912cef1da8d",
+"assets/assets/icons/de/Download_on_the_App_Store.svg": "b37fbda59ff4a48a379ec0f0fd7ffb1d",
+"assets/assets/icons/ko/Download_on_the_App_Store.svg": "27a03284cfd69bffcdf80804ba5c51a1",
+"assets/assets/icons/fr/Download_on_the_App_Store.svg": "2cfdd0a74cd257a00a1821b968acfa92",
+"assets/assets/icons/es/Download_on_the_App_Store.svg": "ebdcadff6fb5dd15a86387038f2d7820",
+"assets/assets/icons/en/Download_on_the_App_Store.svg": "2928664fe1fc6aca88583a6f606d60ba",
+"canvaskit/canvaskit.js": "2bc454a691c631b07a9307ac4ca47797",
+"canvaskit/profiling/canvaskit.js": "38164e5a72bdad0faa4ce740c9b8e564",
+"canvaskit/profiling/canvaskit.wasm": "95a45378b69e77af5ed2bc72b2209b94",
+"canvaskit/canvaskit.wasm": "bf50631470eb967688cca13ee181af62"
 };
 
 // The application shell files that are downloaded before a service worker can
@@ -68,8 +78,6 @@ self.addEventListener("activate", function(event) {
         await caches.delete(TEMP);
         // Save the manifest to make future upgrades efficient.
         await manifestCache.put('manifest', new Response(JSON.stringify(RESOURCES)));
-        // Claim client to enable caching on first launch
-        self.clients.claim();
         return;
       }
       var oldManifest = await manifest.json();
@@ -95,8 +103,6 @@ self.addEventListener("activate", function(event) {
       await caches.delete(TEMP);
       // Save the manifest to make future upgrades efficient.
       await manifestCache.put('manifest', new Response(JSON.stringify(RESOURCES)));
-      // Claim client to enable caching on first launch
-      self.clients.claim();
       return;
     } catch (err) {
       // On an unhandled exception the state of the cache cannot be guaranteed.

@@ -66911,7 +66911,7 @@ $S:0}
 A.aep.prototype={
 $1(a){var s=a.as
 s===$&&A.c()
-if(B.b.ct(s,"arm64-v8a-release.apk"))this.a.f=s
+if(B.b.ct(s,"apk"))this.a.f=s
 if(B.b.ct(s,"ipa"))this.a.e=s},
 $S:415}
 A.aer.prototype={
